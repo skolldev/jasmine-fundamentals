@@ -1,0 +1,14 @@
+    if (ex === 0) {
+      return 1;
+    }
+
+    if (ex % 2 === 0) {
+      return (
+        this.pow(base, Math.floor(ex / 2)) * this.pow(base, Math.floor(ex / 2))
+      );
+    }
+    return (
+      base *
+      this.pow(base, Math.floor(ex / 2)) *
+      this.pow(base, Math.floor(ex / 2))
+    );
