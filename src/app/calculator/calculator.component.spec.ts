@@ -1,16 +1,16 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { CalculatorComponent } from './calculator.component';
+import { CalculatorComponent } from "./calculator.component";
+import { of } from "rxjs";
 
-describe('CalculatorComponent', () => {
+fdescribe("CalculatorComponent", () => {
   let component: CalculatorComponent;
   let fixture: ComponentFixture<CalculatorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CalculatorComponent ]
-    })
-    .compileComponents();
+      declarations: [CalculatorComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +19,16 @@ describe('CalculatorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
+  });
+
+  it("should add 1 if clicking 1", () => {
+    spyOn(component, "enterNumber").and.callThrough();
+    const buttonEl = fixture.nativeElement.querySelector("#one");
+    buttonEl.click();
+
+    expect(component.enterNumber).toHaveBeenCalledWith(1);
+    expect(component.number1).toBe(1);
   });
 });

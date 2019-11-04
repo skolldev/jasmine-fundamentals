@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
+import { PiAPIService } from "../pi-api/pi-api.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class CalculatorService {
-  constructor() {}
+  constructor(private pi: PiAPIService) {}
 
   /**
    * Adds two numbers together
@@ -60,6 +61,23 @@ export class CalculatorService {
     if (ex === 0) {
       return 1;
     }
-    return this.multiply(base, this.pow(base, ex - 1));
+
+    if (ex % 2 === 0) {
+      return (
+        this.pow(base, Math.floor(ex / 2)) * this.pow(base, Math.floor(ex / 2))
+      );
+    }
+    return (
+      base *
+      this.pow(base, Math.floor(ex / 2)) *
+      this.pow(base, Math.floor(ex / 2))
+    );
+  }
+
+  /**
+   * Returns the value of pi
+   */
+  public getPi() {
+    return this.pi.getPi();
   }
 }

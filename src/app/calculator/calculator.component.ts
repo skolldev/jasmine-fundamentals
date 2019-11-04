@@ -49,7 +49,7 @@ export class CalculatorComponent implements OnInit {
    */
   public modes = CalculationMode;
 
-  constructor(private calculator: CalculatorService) {}
+  constructor(public calculator: CalculatorService) {}
 
   /**
    * Call to start the calculation.
@@ -60,7 +60,6 @@ export class CalculatorComponent implements OnInit {
    */
   public handleCalculation(): void {
     this.number1 = this.calculate();
-    console.log(this.number1);
     this.number2 = undefined;
     this.currentMode = CalculationMode.None;
     this.currentOperator = undefined;
